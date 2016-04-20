@@ -1,22 +1,39 @@
 //
 //  AppDelegate.m
-//  UIColor+Categories
+//  FlatColorsCategories
 //
 //  Created by Evan Ische on 4/20/16.
 //  Copyright © 2016 Evan William Ische. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "HDAppDelegate.h"
+#import "HDCollectionViewController.h"
 
-@interface AppDelegate ()
-
+@interface HDAppDelegate ()
 @end
 
-@implementation AppDelegate
-
+@implementation HDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+   
     // Override point for customization after application launch.
+    application.statusBarHidden = true;
+    
+    //
+    const CGFloat itemSizeHeight = round(CGRectGetHeight([[UIScreen mainScreen] bounds]) / 4.0f);
+    const CGFloat itemSizeWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]) / 5.0f;
+    
+    //
+    UICollectionViewFlowLayout *collectionViewLayout = [[UICollectionViewFlowLayout alloc] init];
+    collectionViewLayout.itemSize = CGSizeMake(itemSizeWidth, itemSizeHeight);
+    collectionViewLayout.minimumLineSpacing = 0.0;
+    collectionViewLayout.minimumInteritemSpacing = 0.0f;
+    
+    //
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [[HDCollectionViewController alloc] initWithCollectionViewLayout:collectionViewLayout];
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
